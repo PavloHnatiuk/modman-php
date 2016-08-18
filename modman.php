@@ -764,6 +764,9 @@ class Modman_Command_Remove {
                 } else {
                     throw new Exception('Problem with removing ' . $sSymlinkPath . ' - use --force');
                 }
+            } elseif (file_exists($sSymlinkPath)
+                AND file_exists($sTarget . DIRECTORY_SEPARATOR . $sOriginalPath)) {
+                $oResourceRemover->doRemoveResource($sSymlinkPath);
             }
         }
 
